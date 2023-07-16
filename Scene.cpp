@@ -308,7 +308,7 @@ void CScene::RenderBoundingBox(ID3D12GraphicsCommandList* pd3dCommandList, CCame
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //
-void CCanaleScene::BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList)
+void CGameScene::BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList)
 {
 	CScene::BuildObjects(pd3dDevice, pd3dCommandList);
 
@@ -317,21 +317,6 @@ void CCanaleScene::BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandL
 
 	CObjectsShader* pObjectShader = new CObjectsShader();
 	pObjectShader->CreateShader(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE);
-	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, "Models/Map/Scene.bin");
-	m_ppObjectShaders[0] = pObjectShader;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//
-void CNightScene::BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList)
-{
-	CScene::BuildObjects(pd3dDevice, pd3dCommandList);
-
-	m_nObjectShaders = 1;
-	m_ppObjectShaders = new CObjectsShader * [m_nObjectShaders];
-
-	CObjectsShader* pObjectShader = new CObjectsShader();
-	pObjectShader->CreateShader(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE);
-	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, "Models/NightScene/Scene.bin");
+	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, "Models/g_map/Scene.bin");
 	m_ppObjectShaders[0] = pObjectShader;
 }

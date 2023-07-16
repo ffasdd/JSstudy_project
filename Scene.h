@@ -95,20 +95,11 @@ protected:
 	CBoundingBoxShader*			m_pBoundingBoxShader = NULL;
 };
 
-class CCanaleScene : public CScene
+class CGameScene : public CScene
 {
 public:
-	CCanaleScene() { }
-	~CCanaleScene() { }
-
-	virtual void BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList);
-};
-
-class CNightScene : public CScene
-{
-public:
-	CNightScene() { }
-	~CNightScene() { }
+	CGameScene() { }
+	~CGameScene() { }
 
 	virtual void BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList);
 };

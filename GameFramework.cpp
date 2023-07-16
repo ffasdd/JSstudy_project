@@ -424,33 +424,14 @@ void CGameFramework::BuildObjects(int nScene)
 {
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator, NULL);
 
-	switch (nScene)
-	{
-		case 0:
-		{
-			m_pScene = new CCanaleScene();
-			m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
+	m_pScene = new CGameScene();
+	m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
 
-			CAirplanePlayer* pAirplanePlayer = new CAirplanePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature());
-			m_pScene->m_pPlayer = m_pPlayer = pAirplanePlayer;
-			m_pCamera = m_pPlayer->ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
-			m_pPlayer->CreateShaderVariables(m_pd3dDevice, m_pd3dCommandList);
-			m_pPlayer->SetPosition(XMFLOAT3(-3.944041f, 7.696952f, -2.04254f));
-			break;
-		}
-		case 1:
-		{
-			m_pScene = new CNightScene();
-			m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
-
-			CUfoPlayer* pUfoPlayer = new CUfoPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature());
-			m_pScene->m_pPlayer = m_pPlayer = pUfoPlayer;
-			m_pCamera = m_pPlayer->ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
-			m_pPlayer->CreateShaderVariables(m_pd3dDevice, m_pd3dCommandList);
-			m_pPlayer->SetPosition(XMFLOAT3(-3.944041f, 17.696952f, -2.04254f));
-			break;
-		}
-	}
+	CAirplanePlayer* pAirplanePlayer = new CAirplanePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature());
+	m_pScene->m_pPlayer = m_pPlayer = pAirplanePlayer;
+	m_pCamera = m_pPlayer->ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
+	m_pPlayer->CreateShaderVariables(m_pd3dDevice, m_pd3dCommandList);
+	m_pPlayer->SetPosition(XMFLOAT3(-3.944041f, 7.696952f, -2.04254f));
 
 	m_pd3dCommandList->Close();
 	ID3D12CommandList *ppd3dCommandLists[] = { m_pd3dCommandList };
