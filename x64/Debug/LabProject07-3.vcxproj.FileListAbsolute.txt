@@ -1,2 +1,2 @@
 C:\Users\nhc08\OneDrive\바탕 화면\2023_1\다렉\LabProject07-3\x64\Debug\LabProject07-3.exe
-C:\Users\nhc08\OneDrive\바탕 화면\JSstudy_project\x64\Debug\LabProject07-3.exe
+C:\Users\nhc08\OneDrive\바탕 화면\JSstudy_project\x64\Debug\JS_study.exe
