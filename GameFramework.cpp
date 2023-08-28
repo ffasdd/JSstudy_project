@@ -52,7 +52,7 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	CreateSwapChain();
 	CreateDepthStencilView();
 
-	BuildObjects(1);
+	BuildObjects(0);
 
 	return(true);
 }
@@ -424,14 +424,35 @@ void CGameFramework::BuildObjects(int nScene)
 {
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator, NULL);
 
-	m_pScene = new CGameScene();
-	m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
+	switch (nScene)
+	{
+	case 0:
+	{
+		m_pScene = new CGameScene();
+		m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
 
-	CAirplanePlayer* pAirplanePlayer = new CAirplanePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature());
-	m_pScene->m_pPlayer = m_pPlayer = pAirplanePlayer;
-	m_pCamera = m_pPlayer->ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
-	m_pPlayer->CreateShaderVariables(m_pd3dDevice, m_pd3dCommandList);
-	m_pPlayer->SetPosition(XMFLOAT3(-3.944041f, 7.696952f, -2.04254f));
+		CAirplanePlayer* pAirplanePlayer = new CAirplanePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature());
+		m_pScene->m_pPlayer = m_pPlayer = pAirplanePlayer;
+		m_pCamera = m_pPlayer->ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
+		m_pPlayer->CreateShaderVariables(m_pd3dDevice, m_pd3dCommandList);
+		m_pPlayer->SetPosition(XMFLOAT3(2.0f, 1.0f, 0.0f));
+		break;
+	}
+	case 1:
+	{
+		m_pScene = new CGameScene();
+		m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
+
+		CAirplanePlayer* pAirplanePlayer = new CAirplanePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature());
+		m_pScene->m_pPlayer = m_pPlayer = pAirplanePlayer;
+		m_pCamera = m_pPlayer->ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
+		m_pPlayer->CreateShaderVariables(m_pd3dDevice, m_pd3dCommandList);
+		m_pPlayer->SetPosition(XMFLOAT3(200.0f, 1.0f, 0.0f));
+		break;
+	}
+	}
+
+	
 
 	m_pd3dCommandList->Close();
 	ID3D12CommandList *ppd3dCommandLists[] = { m_pd3dCommandList };
